@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claudbar Android</title>
+<title>Claudbar - Cloud Mascot AI</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a15; color: #f0f0f8; }
@@ -11,121 +11,118 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 .phone { width: 360px; height: 720px; margin: 20px auto; background: #05060a; border-radius: 40px; border: 8px solid #222; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8); position: relative; }
 .phone::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 25px; background: #000; border-radius: 0 0 30px 30px; z-index: 20; }
 
-.stars { position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
-.star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
-@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.screen { width: 100%; height: 100%; display: grid; grid-template-columns: 70px 1fr; grid-template-rows: 50px 1fr 80px; background: linear-gradient(135deg, #0a0a15 0%, #05060f 100%); position: relative; z-index: 2; }
 
-.screen { width: 100%; height: 100%; display: flex; flex-direction: column; background: linear-gradient(135deg, #0a0a15 0%, #05060f 100%); position: relative; z-index: 2; }
+/* === SIDEBAR IZQUIERDA CON NUBE === */
+.sidebar { grid-column: 1; grid-row: 1 / 4; background: rgba(167, 139, 250, 0.08); border-right: 1px solid rgba(167, 139, 250, 0.15); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 12px; gap: 20px; }
 
-.header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; }
-.header-left { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 13px; }
-.header-right { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.cloud-container { margin-top: 10px; }
+.cloud-svg { width: 50px; height: 45px; filter: drop-shadow(0 15px 35px rgba(167, 139, 250, 0.4)); animation: float 3.5s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
 
-.content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+.nav-items { display: flex; flex-direction: column; gap: 12px; }
+.nav-icon { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: rgba(255,255,255,0.08); border: 1px solid rgba(167,139,250,0.2); color: #a78bfa; font-size: 18px; transition: all 0.3s; }
+.nav-icon:hover { background: rgba(167,139,250,0.2); border-color: rgba(167,139,250,0.4); transform: scale(1.05); }
 
-.info-chip { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 20px; padding: 8px 16px; font-size: 12px; margin-bottom: 40px; color: #9a9db3; }
+/* === HEADER === */
+.header { grid-column: 2; grid-row: 1; display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; border-bottom: 1px solid rgba(167,139,250,0.1); background: rgba(167,139,250,0.03); }
+.status-bar { display: flex; gap: 12px; font-size: 11px; color: #6c6e82; }
+.user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
 
-.cloud { width: 120px; height: 100px; margin: 30px auto; opacity: 1; filter: drop-shadow(0 20px 40px rgba(167, 139, 250, 0.2)); }
+/* === CONTENIDO PRINCIPAL === */
+.main { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
 
-.hero-title { font-size: 26px; font-weight: 600; margin: 40px 0 8px; line-height: 1.3; }
-.hero-title .name { background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-sub { font-size: 14px; color: #6c6e82; margin-bottom: 30px; }
+.greeting { font-size: 22px; font-weight: 600; margin-bottom: 24px; line-height: 1.4; }
+.greeting .name { background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+.subtext { font-size: 12px; color: #6c6e82; margin-top: 6px; }
 
-.controls { display: flex; gap: 10px; margin: 30px 0; flex-wrap: wrap; justify-content: center; }
-.control-btn { padding: 8px 16px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: #f0f0f8; font-size: 12px; cursor: pointer; transition: all 0.3s; }
-.control-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(167,139,250,0.3); }
-.control-btn.primary { background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); border: none; font-weight: 500; }
-.control-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(167,139,250,0.3); }
+.action-buttons { display: flex; gap: 10px; margin: 24px 0; flex-wrap: wrap; justify-content: center; }
+.btn { padding: 10px 18px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 18px; color: #f0f0f8; font-size: 11px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+.btn:hover { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.4); }
+.btn.bar-live { background: linear-gradient(135deg, #a78bfa 0%, #f26b21 100%); border: none; font-weight: 700; padding: 11px 28px; font-size: 12px; }
+.btn.bar-live:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(167,139,250,0.35); }
 
-.input-section { width: 100%; padding: 20px; }
-.input-box { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 24px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; transition: all 0.3s; margin-bottom: 16px; }
-.input-box:focus-within { background: rgba(255, 255, 255, 0.12); border-color: rgba(167, 139, 250, 0.4); }
-.input-box input { flex: 1; background: none; border: none; color: #f0f0f8; font-size: 13px; outline: none; }
+/* === INPUT === */
+.input-area { grid-column: 2; grid-row: 3; padding: 12px 16px 16px; border-top: 1px solid rgba(167,139,250,0.1); background: rgba(167,139,250,0.03); }
+.input-box { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 22px; padding: 11px 14px; display: flex; align-items: center; gap: 10px; transition: all 0.3s; }
+.input-box:focus-within { background: rgba(167, 139, 250, 0.15); border-color: rgba(167, 139, 250, 0.4); }
+.input-box input { flex: 1; background: none; border: none; color: #f0f0f8; font-size: 11px; outline: none; }
 .input-box input::placeholder { color: #6c6e82; }
 .input-icons { display: flex; gap: 8px; }
-.input-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #a78bfa; font-size: 14px; }
-
-.bottom-actions { display: flex; justify-content: center; gap: 20px; padding: 0; }
-.action-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; color: #9a9db3; font-size: 14px; transition: all 0.3s; }
-.action-icon:hover { background: rgba(255,255,255,0.12); color: #a78bfa; }
+.input-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #a78bfa; font-size: 12px; }
 </style>
 </head>
 <body>
 
 <div class="phone">
-  <div class="stars" id="starsContainer"></div>
-
   <div class="screen">
-    <div class="header">
-      <div class="header-left">📱 Pantalla completa</div>
-      <div class="header-right">👤</div>
-    </div>
-
-    <div class="content">
-      <div class="info-chip">📍 26° · Kissimmee · Nublado</div>
-
-      <svg class="cloud" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#e8e8f0;stop-opacity:1" />
-          </linearGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <ellipse cx="60" cy="55" rx="50" ry="40" fill="url(#cloudGrad)" filter="url(#glow)"/>
-        <circle cx="48" cy="50" r="4" fill="#0a0a15"/>
-        <circle cx="72" cy="50" r="4" fill="#0a0a15"/>
-        <path d="M 45 62 Q 60 68 75 62" stroke="#0a0a15" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M 25 60 Q 20 68 25 78" stroke="#e8e8f0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <path d="M 95 60 Q 100 68 95 78" stroke="#e8e8f0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      </svg>
-
-      <div class="hero-title">¿Qué tarea hago por ti, <span class="name">ANGEL</span>?</div>
-      <div class="hero-sub">¡Esai ¿Cómo estás?</div>
-
-      <div class="controls">
-        <div class="control-btn">Auto</div>
-        <div class="control-btn">🤖 Agente</div>
-        <div class="control-btn">🕐</div>
-        <div class="control-btn">✏️</div>
-        <div class="control-btn primary">🎙️ Bar Live</div>
+    
+    <!-- SIDEBAR IZQUIERDA CON NUBE -->
+    <div class="sidebar">
+      <div class="cloud-container">
+        <svg class="cloud-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#e0d5ff;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#f3e8ff;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="32" cy="50" rx="22" ry="18" fill="url(#cloudGrad)" />
+          <ellipse cx="52" cy="45" rx="28" ry="20" fill="url(#cloudGrad)" />
+          <ellipse cx="65" cy="55" rx="18" ry="15" fill="url(#cloudGrad)" />
+          <circle cx="45" cy="35" r="8" fill="url(#cloudGrad)" />
+          <!-- Ojos -->
+          <circle cx="40" cy="48" r="2.5" fill="#0a0a15" />
+          <circle cx="52" cy="48" r="2.5" fill="#0a0a15" />
+          <!-- Sonrisa -->
+          <path d="M 42 55 Q 46 57 50 55" stroke="#0a0a15" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="nav-items">
+        <div class="nav-icon" title="Chat">💬</div>
+        <div class="nav-icon" title="Voice">🎤</div>
+        <div class="nav-icon" title="Search">🔍</div>
+        <div class="nav-icon" title="Settings">⚙️</div>
       </div>
     </div>
 
-    <div class="input-section">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="status-bar">
+        <span>12:45</span>
+        <span>📍 NYC</span>
+      </div>
+      <div class="user-avatar">A</div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main">
+      <div class="greeting">
+        ¿Qué necesitas,<br><span class="name">ANGEL?</span>
+      </div>
+      <div class="subtext">La nube está lista para ayudarte</div>
+      
+      <div class="action-buttons">
+        <div class="btn">Auto</div>
+        <div class="btn">Agente</div>
+        <div class="btn bar-live">🎙️ Bar Live</div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-area">
       <div class="input-box">
-        <span style="font-size: 16px; color: #a78bfa;">+</span>
-        <input type="text" placeholder="Pregunta cualquier cosa...">
+        <span style="color: #6c6e82;">+</span>
+        <input type="text" placeholder="Pregunta algo...">
         <div class="input-icons">
-          <div class="input-icon">✨</div>
-          <div class="input-icon">🎙️</div>
-          <div class="input-icon">↑</div>
+          <div class="input-icon">🔍</div>
+          <div class="input-icon">🎤</div>
         </div>
       </div>
-      
-      <div class="bottom-actions">
-        <div class="action-icon">🔄</div>
-        <div class="action-icon">❤️</div>
-        <div class="action-icon">⭕</div>
-        <div class="action-icon">📋</div>
-      </div>
     </div>
+
   </div>
 </div>
-
-<script>
-for (let i = 0; i < 50; i++) {
-  const star = document.createElement('div');
-  star.className = 'star';
-  star.style.left = Math.random() * 360 + 'px';
-  star.style.top = Math.random() * 720 + 'px';
-  star.style.animationDelay = Math.random() * 3 + 's';
-  document.getElementById('starsContainer').appendChild(star);
-}
-</script>
 
 </body>
 </html>

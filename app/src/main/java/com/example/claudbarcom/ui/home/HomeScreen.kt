@@ -14,16 +14,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.claudbarcom.R
 
 @Composable
 fun HomeScreen() {
-    val cloudComposition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cloud_animation))
-    val cloudAnimationState by animateLottieCompositionAsState(cloudComposition, isPlaying = true, iterations = Int.MAX_VALUE)
+    var mascotState by remember { mutableStateOf(MascotState.IDLE) }
 
     Box(
         modifier = Modifier
@@ -49,10 +43,10 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(40.dp))
 
             Box(modifier = Modifier.size(120.dp)) {
-                LottieAnimation(
-                    composition = cloudComposition,
-                    progress = cloudAnimationState,
-                    modifier = Modifier.fillMaxSize()
+                CloudMascot(
+                    state = mascotState,
+                    size = 120f,
+                    onStateChange = { mascotState = it }
                 )
             }
 
@@ -72,7 +66,7 @@ fun HomeScreen() {
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(30.dp))
-            ControlButtons()
+            ControlButtons(onMascotStateChange = { mascotState = it })
             Spacer(modifier = Modifier.height(40.dp))
         }
 
@@ -128,25 +122,25 @@ fun GlassChip(text: String) {
 }
 
 @Composable
-fun ControlButtons() {
+fun ControlButtons(onMascotStateChange: (MascotState) -> Unit = {}) {
     Column(modifier = Modifier.fillMaxWidth(0.9f), horizontalAlignment = Alignment.CenterHorizontally) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            GlassButton("Auto", Modifier.weight(1f))
-            GlassButton("🤖 Agente", Modifier.weight(1f))
-            GlassButton("🕐", Modifier.weight(1f))
+            GlassButton("Auto", Modifier.weight(1f), onClick = { onMascotStateChange(MascotState.SPEAKING) })
+            GlassButton("🤖 Agente", Modifier.weight(1f), onClick = { onMascotStateChange(MascotState.THINKING) })
+            GlassButton("🕐", Modifier.weight(1f), onClick = { onMascotStateChange(MascotState.IDLE) })
         }
         Spacer(modifier = Modifier.height(10.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            GlassButton("✏️", Modifier.weight(1f))
-            GlassButton("🎙️ Bar Live", Modifier.weight(2f), isPrimary = true)
+            GlassButton("✏️", Modifier.weight(1f), onClick = { onMascotStateChange(MascotState.EXCITED) })
+            GlassButton("🎙️ Bar Live", Modifier.weight(2f), isPrimary = true, onClick = { onMascotStateChange(MascotState.LISTENING) })
         }
     }
 }
 
 @Composable
-fun GlassButton(text: String, modifier: Modifier = Modifier, isPrimary: Boolean = false) {
+fun GlassButton(text: String, modifier: Modifier = Modifier, isPrimary: Boolean = false, onClick: () -> Unit = {}) {
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier.height(40.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isPrimary) Color(0xFFA78BFA) else Color(0xFFFFFFFF).copy(alpha = 0.08f)

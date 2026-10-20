@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_dark"
+    tools:context=".ui.home.HomeFragment">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:background="@color/background_dark">
+
+        <TextView
+            android:id="@+id/fullscreen_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📱 Pantalla completa"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/bg_glass_button"
+            android:fontFamily="@font/system_font" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/profile_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_gradient_button">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="👤"
+                android:textSize="20sp"
+                android:gravity="center" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- MAIN CONTENT -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="40dp">
+
+            <!-- WEATHER CHIP -->
+            <TextView
+                android:id="@+id/weather_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 26° · Kissimmee · Nublado"
+                android:textSize="12sp"
+                android:textColor="@color/text_tertiary"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/bg_glass_button"
+                android:layout_marginBottom="40dp" />
+
+            <!-- CLOUD IMAGE -->
+            <ImageView
+                android:id="@+id/cloud_mascot"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_marginVertical="30dp"
+                android:contentDescription="@string/cloud_mascot"
+                android:scaleType="centerInside" />
+
+            <!-- HERO TEXT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hero_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué tarea hago por ti, ANGEL?"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/hero_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¡Esai ¿Cómo estás?"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_tertiary"
+                    android:gravity="center"
+                    android:layout_marginBottom="30dp" />
+            </LinearLayout>
+
+            <!-- CONTROL BUTTONS -->
+            <GridLayout
+                android:id="@+id/controls_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="2"
+                android:layout_marginBottom="30dp">
+
+                <Button
+                    android:id="@+id/btn_auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auto"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/bg_glass_button"
+                    android:textColor="@color/text_primary"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/btn_agent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🤖 Agente"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/bg_glass_button"
+                    android:textColor="@color/text_primary"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/btn_clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🕐"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/bg_glass_button"
+                    android:textColor="@color/text_primary"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/btn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✏️"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/bg_glass_button"
+                    android:textColor="@color/text_primary"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/btn_bar_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎙️ Bar Live"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/bg_gradient_button"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_columnSpan="2"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp" />
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- INPUT AREA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:background="@color/background_dark">
+
+        <!-- TEXT INPUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/bg_glass_input"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="18sp"
+                android:textColor="@color/accent_purple"
+                android:layout_marginEnd="12dp" />
+
+            <EditText
+                android:id="@+id/input_message"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Pregunta cualquier cosa..."
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_tertiary"
+                android:textSize="13sp"
+                android:inputType="text" />
+
+            <ImageButton
+                android:id="@+id/btn_sparkle"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@null"
+                android:contentDescription="@string/sparkle"
+                android:scaleType="center"
+                android:text="✨" />
+
+            <ImageButton
+                android:id="@+id/btn_mic_input"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@null"
+                android:contentDescription="@string/mic"
+                android:scaleType="center"
+                android:text="🎙️"
+                android:layout_marginHorizontal="8dp" />
+
+            <ImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@null"
+                android:contentDescription="@string/send"
+                android:scaleType="center"
+                android:text="↑" />
+        </LinearLayout>
+
+        <!-- BOTTOM ACTIONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingVertical="8dp">
+
+            <ImageButton
+                android:id="@+id/btn_refresh"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_glass_button"
+                android:contentDescription="@string/refresh"
+                android:scaleType="center"
+                android:text="🔄"
+                android:layout_margin="10dp" />
+
+            <ImageButton
+                android:id="@+id/btn_like"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_glass_button"
+                android:contentDescription="@string/like"
+                android:scaleType="center"
+                android:text="❤️"
+                android:layout_margin="10dp" />
+
+            <ImageButton
+                android:id="@+id/btn_circle"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_glass_button"
+                android:contentDescription="@string/circle"
+                android:scaleType="center"
+                android:text="⭕"
+                android:layout_margin="10dp" />
+
+            <ImageButton
+                android:id="@+id/btn_clipboard"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_glass_button"
+                android:contentDescription="@string/clipboard"
+                android:scaleType="center"
+                android:text="📋"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

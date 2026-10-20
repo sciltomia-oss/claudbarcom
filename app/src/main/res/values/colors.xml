@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="background_dark">#05060a</color>
+    <color name="background_darker">#0a0a15</color>
+    <color name="background_card">#0f0f20</color>
+    
+    <!-- Text -->
+    <color name="text_primary">#f0f0f8</color>
+    <color name="text_secondary">#e8e8f0</color>
+    <color name="text_tertiary">#6c6e82</color>
+    <color name="text_muted">#9a9db3</color>
+    
+    <!-- Accents -->
+    <color name="accent_purple">#a78bfa</color>
+    <color name="accent_orange">#f26b21</color>
+    <color name="accent_purple_light">#d4c5f9</color>
+    
+    <!-- Glass Effect -->
+    <color name="glass_border">#1a1a2e</color>
+    <color name="glass_background">#ffffff14</color>
+</resources>

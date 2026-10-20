@@ -1,0 +1,37 @@
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+build/
+.gradle/
+local.properties
+*.iml
+.idea/
+.DS_Store
+*.jks
+*.keystore
+
+# Gradle
+.gradle
+gradlew
+gradlew.bat
+gradle/
+
+# IDE
+.vscode/
+.classpath
+.project
+.settings/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db

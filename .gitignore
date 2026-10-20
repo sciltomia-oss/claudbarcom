@@ -16,8 +16,6 @@ local.properties
 
 # Gradle
 .gradle
-gradlew
-gradlew.bat
 gradle/
 
 # IDE
